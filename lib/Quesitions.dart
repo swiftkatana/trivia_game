@@ -1,4 +1,4 @@
-ok so i add class questions that hold all the logicclass Quesitions {
+class Quesitions {
   final quesitions;
   var quesitionIndex = 0;
   var quesitionNow;
