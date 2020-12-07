@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:trivia_game/Quesitions.dart';
+import 'package:trivia_game/components/TriviaList.dart';
 
 class TriviaScreen extends StatefulWidget {
   final String name;
@@ -17,7 +19,7 @@ class _TriviaScreenState extends State<TriviaScreen> {
   }
 }
 
-Future<List<dynamic>> makeApiReq() async {
+Future makeApiReq() async {
   return await http
       .get(
           "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple")
@@ -38,32 +40,37 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  var listItems = [];
-  var answers = [];
-
-  void gotAnswer(arr) {
-    this.setState(() {
-      answers.add(arr);
-    });
-  }
+  var quesitions;
+  var quesition;
 
   @override
   void initState() {
     makeApiReq().then((arry) => this.setState(() {
-          this.listItems = arry;
+          this.quesitions = new Quesitions(arry);
         }));
     super.initState();
   }
 
+  onClickQuis(text) {
+    print(text);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Align(child: Text(this.listItems.length.toString())),
-        Align(child: Text('dsa'))
-      ],
-    );
+    if (this.quesitions is Quesitions) {
+      this.quesition = this.quesitions.startGame();
+
+      return Column(
+        children: [
+          Padding(
+              padding: EdgeInsets.all(14.0),
+              child: TriviaList(
+                quesition: quesition,
+                onClick: onClickQuis,
+              ))
+        ],
+      );
+    }
+    return Text("loding");
   }
 }

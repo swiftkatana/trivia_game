@@ -6,7 +6,13 @@ class WellComeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Trivia Game  ")),
+        appBar: AppBar(
+            title: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'Trivia Game',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ))),
         body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
