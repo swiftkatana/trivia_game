@@ -7,16 +7,18 @@ class WellComeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Trivia Game  ")),
-        body: Column(children: <Widget>[
-          Align(
-              alignment: Alignment.center,
-              child: Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text('What is Your Name'))),
-          Align(
-              alignment: Alignment.center,
-              child: Padding(padding: EdgeInsets.all(10), child: Body()))
-        ]));
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'What is Your Name',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  )),
+              Align(alignment: Alignment.center, child: Body())
+            ]));
   }
 }
 

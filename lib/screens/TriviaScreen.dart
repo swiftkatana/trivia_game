@@ -17,7 +17,7 @@ class _TriviaScreenState extends State<TriviaScreen> {
   }
 }
 
-makeApiReq() async {
+Future<List<dynamic>> makeApiReq() async {
   return await http
       .get(
           "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple")
@@ -39,15 +39,31 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   var listItems = [];
-  void show(array) => {
-        this.setState(() {
-          this.listItems = array;
-        })
-      };
+  var answers = [];
+
+  void gotAnswer(arr) {
+    this.setState(() {
+      answers.add(arr);
+    });
+  }
+
+  @override
+  void initState() {
+    makeApiReq().then((arry) => this.setState(() {
+          this.listItems = arry;
+        }));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    print(this.listItems);
-    return Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Align(child: Text(this.listItems.length.toString())),
+        Align(child: Text('dsa'))
+      ],
+    );
   }
 }
