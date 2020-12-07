@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class TextInput extends StatefulWidget {
   final Function onClick;
-  TextInput(this.onClick);
+  final String placeHolder;
+  TextInput({this.onClick, this.placeHolder});
   @override
   _TextInputState createState() => _TextInputState();
 }
@@ -25,7 +26,7 @@ class _TextInputState extends State<TextInput> {
             border: OutlineInputBorder(
                 borderSide: BorderSide(width: 5, color: Colors.black)),
             prefixIcon: Icon(Icons.person),
-            labelText: 'Type Your Name:',
+            labelText: this.widget.placeHolder,
             suffixIcon: IconButton(
               icon: Icon(Icons.done),
               splashColor: Colors.green,
