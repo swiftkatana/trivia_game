@@ -11,11 +11,16 @@ class TextInput extends StatefulWidget {
 class _TextInputState extends State<TextInput> {
   String text;
   TextEditingController controller = new TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
   void onCkick() {
-    this.setState(() {
-      this.text = controller.text;
-    });
     this.widget.onClick(controller.text);
+    this.controller.clear();
   }
 
   @override

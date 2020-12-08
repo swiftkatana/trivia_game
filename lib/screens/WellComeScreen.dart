@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:trivia_game/components/TextInput.dart';
 import 'package:trivia_game/screens/TriviaScreen.dart';
 
+// this screen is the first one you enter your name and then you move to the game
+
+// !! be aware i have weird bug that the system Ui isn't responding sometimes
 class WellComeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
